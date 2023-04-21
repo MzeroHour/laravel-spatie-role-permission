@@ -29,6 +29,8 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::get('/', [IndexController::class, 'index'])->name('index');
     Route::resource('/roles', RoleController::class);
     Route::resource('/permissions', PermissionController::class);
+    Route::post('/roles/{role}/permissions', [RoleController::class, 'addPermission'])->name('roles.permissions');
+    Route::delete('/roles/{role}/permissions/{permission}', [RoleController::class, 'revokePermission'])->name('roles.permissions.revoke');
 
 });
 
