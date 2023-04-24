@@ -38,13 +38,17 @@ class RoleController extends Controller
          return back()->with('message', 'Delete has been Successfully');
     }
 
-    public function addPermission(Role $role, Request $request){
+    //Add Permission
+    public function givePermission(Role $role, Request $request){
         if($role->hasPermissionTo($request->permission)){
             return back()->with('message', 'Permission Exists');
+
         }
         $role->givePermissionTo($request->permission);
           return back()->with('message', 'Permission Added');
     }
+
+    //Remove Permission
     public function revokePermission(Role $role, Permission $permission)
     {
         if($role->hasPermissionTo($permission)){
